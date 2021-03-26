@@ -24,6 +24,8 @@
 #include "stdlib.h"
 #include "hw_config.h"
 
+#if TEMPERATURE_SIMULATOR_COUNT > 0
+
 //// TEMPERATURE SENSOR SIMULATOR //
 typedef struct device_temperature_simulator_s {
     device_temperature_sensor_t ext_iface;
@@ -77,3 +79,5 @@ ret_code_t device$temperature_simulator$open(uint32_t device_id, device_temperat
 
     return status;
 }
+
+#endif //TEMPERATURE_SIMULATOR_COUNT > 0

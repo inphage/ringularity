@@ -18,6 +18,7 @@
  */
 #include "dev_include.h"
 #include "hw_config.h"
+#include "sim_config.h"
 #include "sensorsim.h"
 #include "pulse_oximeter_simulator.h"
 
@@ -29,18 +30,20 @@ typedef struct device_pulse_oximeter_sim_s {
     sensorsim_state_t spo2_sim_state;              
 } device_pulse_oximeter_sim_t;
 
-static ret_code_t plx_read_spo2(device_pulse_oximeter_t *p_dev, uint16_t *p_measurement) {
+static ret_code_t plx_read_spo2(device_pulse_oximeter_t *p_dev, uint16_t *p_measurement, bool *p_valid) {
     DEV_READ_CHECK_PARAMS(p_dev, p_measurement);
     device_pulse_oximeter_sim_t *p_sim = (device_pulse_oximeter_sim_t *)p_dev;
     *p_measurement = sensorsim_measure(&p_sim->spo2_sim_state, &p_sim->spo2_sim_cfg);
+    *p_valid = true;
 
     return NRF_SUCCESS;
 }
 
-static ret_code_t plx_read_pulse_rate(device_pulse_oximeter_t *p_dev, uint16_t *p_measurement) {
+static ret_code_t plx_read_pulse_rate(device_pulse_oximeter_t *p_dev, uint16_t *p_measurement, bool *p_valid) {
     DEV_READ_CHECK_PARAMS(p_dev, p_measurement);
     device_pulse_oximeter_sim_t *p_sim = (device_pulse_oximeter_sim_t *)p_dev;
     *p_measurement = sensorsim_measure(&p_sim->pulse_rate_sim_state, &p_sim->pulse_rate_sim_cfg);
+    *p_valid = true;
 
     return NRF_SUCCESS;
 }

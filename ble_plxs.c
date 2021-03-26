@@ -19,6 +19,7 @@
 #include "ble_plxs.h"
 #include "app_util_bds.h"
 #include "sfloat.h"
+#include "nrf_assert.h"
 
 #define OPCODE_LENGTH 1                                                              /**< Length of opcode inside Pulse Oximeter Measurement packet. */
 #define HANDLE_LENGTH 2                                                              /**< Length of handle inside Pulse Oximeter Measurement packet. */
@@ -221,16 +222,6 @@ static uint8_t plxm_cm_encode(ble_plxs_t * p_plxs, ble_plxm_t * p_plxm, uint8_t 
     int     i;
 
     // Set flags
-    /*
-    if (p_hrs->is_sensor_contact_supported)
-    {
-        flags |= HRM_FLAG_MASK_SENSOR_CONTACT_SUPPORTED;
-    }
-    if (p_hrs->is_sensor_contact_detected)
-    {
-        flags |= HRM_FLAG_MASK_SENSOR_CONTACT_DETECTED;
-    }*/
-
     p_encoded_buffer[len++] = flags;
     p_encoded_buffer[len++] = 0; //reserved, set to 0
 
@@ -307,6 +298,7 @@ uint32_t ble_plxs_init(ble_plxs_t * p_plxs, const ble_plxs_init_t * p_plxs_init)
     add_char_params.is_var_len        = true;
     add_char_params.char_props.notify = 1;
     add_char_params.cccd_write_access = p_plxs_init->plxm_cccd_wr_sec;
+    ASSERT(add_char_params.init_len <= MAX_PLX_LEN);
 
     err_code = characteristic_add(p_plxs->service_handle, &add_char_params, &(p_plxs->cm_handles));
     if (err_code != NRF_SUCCESS)
@@ -419,7 +411,9 @@ uint32_t ble_plxs_continuous_measurement_send(ble_plxs_t * p_plxs, ble_plxm_t * 
         hvx_params.offset = 0;
         hvx_params.p_len  = &hvx_len;
         hvx_params.p_data = encoded_plxm;
+        ASSERT(hvx_len <= MAX_PLX_LEN);
 
+        err_code = NRF_SUCCESS;
         err_code = sd_ble_gatts_hvx(p_plxs->conn_handle, &hvx_params);
         if ((err_code == NRF_SUCCESS) && (hvx_len != len))
         {

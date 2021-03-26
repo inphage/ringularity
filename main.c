@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Open Ring Project, All rights reserved
+ * Copyright (c) 2021 Open Ring Project, All rights reserved
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  * and associated documentation files (the "Software"), to deal in the Software without 
@@ -24,60 +24,38 @@
 // @brief Ringularity operating environment main file
 //
 // Contains top-level functionality & glue
+#include "sdk_config.h"
+#define NRFX_CHECK(module_enabled)  (module_enabled)
+#include "nrfx_common.h"
 
-//#include "nordic_common.h"
-//#include "nrf.h"
-//#include "app_error.h"
 #include "app_scheduler.h"
-//#include "ble.h"
-//#include "ble_bas.h"
-//#include "ble_cts_c.h"
-//#include "ble_hrs.h"
-//#include "ble_hts.h"
-//#include "ble_dis.h"
-//#include "ble_plxs.h"
-//#include "ble_rscs.h"
-//#include "ble_srv_common.h"
-//#include "ble_advdata.h"
-//#include "ble_advertising.h"
-//#include "ble_conn_params.h"
-//#include "ble_conn_state.h"
-//#include "nrf_fstorage.h"
-//#include "nrf_sdh.h"
-//#include "nrf_soc.h"
-//#include "nrf_sdh_soc.h"
-//#include "nrf_sdh_ble.h"
-//#include "nrf_delay.h"
-//#include "nrf_temp.h"
-//#include "app_timer.h"
-//#include "peer_manager.h"
-//#include "peer_manager_handler.h"
-//#include "bsp.h"
-//#include "bsp_btn_ble.h"
-//#include "sensorsim.h"
-//#include "nrf_ble_gatt.h"
-//#include "nrf_ble_qwr.h"
-//#include "nrf_ble_bms.h"
-
-//#include "nrf_ble_lesc.h"
-//#include "nrf_ble_scan.h"
+#include "app_util_platform.h"
 #include "nrf_pwr_mgmt.h"
+#include "nrf_delay.h"
+
 
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
 #include "hw_config.h"
+
 #include "ble_config.h"
+
 #include "app_util.h"
+
 #include "ble_main.h"
 #include "ui.h"
 #include "ble_main.h"
 
+//TWI/I2C headers
+#define NRFX_CHECK(module_enabled)  (module_enabled)
+
+
 #define DEAD_BEEF                       0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
 // Features
-// over-the-air firmware updates
+//  over-the-air firmware updates
 // sensors:
 //  Pulse Oximeter: SpO2, heart rate
 //  Temperature: Body temperature
@@ -96,7 +74,7 @@
 // * init timers
 // * update method
 // * error method?
-// Also: need #define to bind hardware driver to device service layer
+// * binding hardware driver to device service layer
 
 DEVICE_DEFS;
 DEVICE_OPENER_DEFS;
@@ -107,6 +85,20 @@ static void log_init(void) {
     APP_ERROR_CHECK(err_code);
 
     NRF_LOG_DEFAULT_BACKENDS_INIT();
+}
+
+void assert_nrf_callback(uint16_t line_num, const uint8_t * file_name)
+{
+    NRF_LOG_ERROR("Assert failed at %s line %d", file_name, (uint32_t)line_num);
+/*    assert_info_t assert_info =
+    {
+        .line_num    = line_num,
+        .p_file_name = file_name,
+    };
+
+    app_error_fault_handler(NRF_FAULT_ID_SDK_ASSERT, 0, (uint32_t)(&assert_info));
+
+    UNUSED_VARIABLE(assert_info);*/
 }
 
 //NOTE: probably do not want shut-down if no button available to wake up
@@ -134,7 +126,6 @@ static bool shutdown_handler(nrf_pwr_mgmt_evt_t event)
 }
 
 NRF_PWR_MGMT_HANDLER_REGISTER(shutdown_handler, APP_SHUTDOWN_HANDLER_PRIORITY);
-
 
 // @brief Initializes power management
 static void power_management_init(void) {
@@ -171,13 +162,26 @@ void sleep_mode_enter(void)
     UI_SLEEP_MODE_PREPARE();
 
     // Go to system-off mode (this function will not return; wakeup will cause a reset).
+    // should this happen to return the error code is NRF_ERROR_SOC_POWER_OFF_SHOULD_NOT_RETURN 
     err_code = sd_power_system_off();
-    APP_ERROR_CHECK(err_code);
+    //APP_ERROR_CHECK(err_code);
+#ifdef DEBUG
+        while (true)
+        {
+            /* Since the CPU is kept on in an emulated System OFF mode, it is recommended
+             * to add an infinite loop directly after entering System OFF, to prevent
+             * the CPU from executing code that normally should not be executed. */
+            __WFE();
+
+        }
+#endif
+
 }
 
 // @brief Function for handling the idle state (main loop).
 //
 // @details If there is no pending log operation, then sleep until next the next event occurs.
+// WARNING: nrf_pwr_mgmt_run can put things in to a suspended state
 static void idle_state_handle(void) {
     ret_code_t err_code;
 
@@ -188,14 +192,16 @@ static void idle_state_handle(void) {
     app_sched_execute();
     if (NRF_LOG_PROCESS() == false)
     {
+#ifndef DEBUG
         nrf_pwr_mgmt_run();
+#endif
     }
 }
 
 ret_code_t devices_init() {
   NRF_LOG_INFO("Devices init...");
-  NRF_LOG_INFO(STRINGIFY(DEV_OPENER(4,0,inertial_measurement_unit_sim,inertial_measurement_unit,{})));
-  NRF_LOG_INFO(STRINGIFY(DEVICE_INIT_SEQUENCE2));
+  //NRF_LOG_INFO(STRINGIFY(DEV_OPENER(4,0,inertial_measurement_unit_sim,inertial_measurement_unit,{})));
+  //NRF_LOG_INFO(STRINGIFY(DEVICE_INIT_SEQUENCE2));
   //NRF_LOG_INFO(STRINGIFY({DEV_SEQUENCE(4)}));
   typedef ret_code_t (*f0)();
   const static f0 dev_init_sequence[] = DEVICE_INIT_SEQUENCE;
@@ -227,10 +233,19 @@ static void initialize_system(bool *erase_bonds) {
 
 
 void start_operations(bool erase_bonds) {
-    NRF_LOG_INFO("Starting Ringulrity...");
-    //devices_start();
+    NRF_LOG_INFO("Starting Ringularity...");
+    devices_start();
     ble$start(erase_bonds);
 }
+
+void twi_wait_while_busy(const nrf_drv_twi_t *p_twi) {
+    //idle_state_handle();
+    app_sched_execute();
+    while(nrf_drv_twi_is_busy(p_twi)) {
+        idle_state_handle();
+    }
+}
+
 
 void run_app() {
     NRF_LOG_INFO("Ringularity is running");

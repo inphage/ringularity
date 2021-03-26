@@ -16,15 +16,30 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-#ifndef __APP_UTIL_H__
-#define __APP_UTIL_H__
 
-// provides count of elements in a C array
-#define countof(rg) (sizeof(rg)/sizeof(rg[0]))
+#ifndef __DEV_TWI_H__
+#define __DEV_TWI_H__
 
-#define DISPATCH_EVT($handlers, $evt) for(int $i = 0; $i < countof($handlers); $i++) { (*$handlers)($evt); }
-#define DISPATCH_EVT2($handlers, $arg1, $arg2) for(int $i = 0; $i < countof($handlers); $i) \
-                      { (*$handlers)($arg1, $arg2); }
+#include "nrf_drv_twi.h"
+#include "nrf_twim.h"
+#include "nrf_twi_sensor.h"
+#include "nrf_twi_mngr.h"
+#include "boards.h"
+
+#define TWI_IDX_0 0
+#define TWI_IDX_1 
+#define DEV_TWI_MNGR_QUEUE_SIZE 2
+
+#define DECL_DEV_TWI(x) extern nrf_twi_sensor_t *dev_twi_bus ## x;
+    
+#define DEF_DEV_TWI(x) \
+    nrf_drv_twi_t _twi##x = NRF_DRV_TWI_INSTANCE(0);\
+    NRF_TWI_MNGR_DEF(_twi ##x## _mngr, DEV_TWI_MNGR_QUEUE_SIZE, x);\
+    NRF_TWI_SENSOR_DEF(_twi_bus##x, &_twi##x##_mngr, TWI_MSG_BUFF_SIZE);\
+    nrf_twi_sensor_t *dev_twi_bus ## x = &_twi_bus##x;
 
 
-#endif //__APP_UTIL_H__
+ret_code_t device$twi_bus$open(uint32_t device_id, nrf_drv_twi_config_t *params,
+    nrf_twi_sensor_t **pp_device);
+
+#endif

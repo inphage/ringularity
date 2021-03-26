@@ -16,15 +16,10 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-#ifndef __APP_UTIL_H__
-#define __APP_UTIL_H__
+#ifndef __ARDUINO_H__
+#define __ARDUINO_H__
+#include "stdint.h"
 
-// provides count of elements in a C array
-#define countof(rg) (sizeof(rg)/sizeof(rg[0]))
+#define min(x,y) ((x) < (y) ? (x) : (y))
 
-#define DISPATCH_EVT($handlers, $evt) for(int $i = 0; $i < countof($handlers); $i++) { (*$handlers)($evt); }
-#define DISPATCH_EVT2($handlers, $arg1, $arg2) for(int $i = 0; $i < countof($handlers); $i) \
-                      { (*$handlers)($arg1, $arg2); }
-
-
-#endif //__APP_UTIL_H__
+#endif //__ARDUINO_H__

@@ -19,6 +19,7 @@
 #include "app_timer.h"
 #include "ble_rscs.h"
 #include "hw_config.h"
+#include "sim_config.h"
 
 APP_TIMER_DEF(m_rsc_meas_timer_id);                                 /**< RSC measurement timer. */
 BLE_RSCS_DEF(m_rscs);                                               /**< Structure used to identify the running speed and cadence service. */

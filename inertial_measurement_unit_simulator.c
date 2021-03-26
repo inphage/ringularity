@@ -18,6 +18,7 @@
  */
 #include "dev_include.h"
 #include "hw_config.h"
+#include "sim_config.h"
 #include "sensorsim.h"
 #include "inertial_measurement_unit_simulator.h"
 

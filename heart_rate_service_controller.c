@@ -22,6 +22,7 @@
 #include "nordic_common.h"
 #include "hw_config.h"
 
+#if NRF_MODULE_ENABLED(BLE_HRS)
 BLE_HRS_DEF(m_hrs);                                                 /**< Heart rate service instance. */
 
 APP_TIMER_DEF(m_heart_rate_timer_id);                               /**< Heart rate measurement timer. */
@@ -150,3 +151,5 @@ void srvcon$heart_rate_service$start() {
     err_code = app_timer_start(m_sensor_contact_timer_id, SENSOR_CONTACT_DETECTED_INTERVAL, NULL);
     APP_ERROR_CHECK(err_code);
 }
+
+#endif //NRF_MODULE_ENABLED(BLE_HRS)

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Open Ring Project, All rights reserved
+ * Copyright (c) 2021 Open Ring Project, All rights reserved
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  * and associated documentation files (the "Software"), to deal in the Software without 
@@ -53,8 +53,8 @@
 #define APP_ADV_FAST_INTERVAL           0x0028                                      /**< Fast advertising interval (in units of 0.625 ms). The default value corresponds to 25 ms. */
 #define APP_ADV_SLOW_INTERVAL           0x0C80                                      /**< Slow advertising interval (in units of 0.625 ms). The default value corresponds to 2 seconds. */
 
-#define APP_ADV_FAST_DURATION           3000                                        /**< The advertising duration of fast advertising in units of 10 milliseconds. */
-#define APP_ADV_SLOW_DURATION           18000                                       /**< The advertising duration of slow advertising in units of 10 milliseconds. */
+#define APP_ADV_FAST_DURATION           30000                                        /**< The advertising duration of fast advertising in units of 10 milliseconds. */
+#define APP_ADV_SLOW_DURATION           180000                           /**< The advertising duration of slow advertising in units of 10 milliseconds. */
 
 #define APP_BLE_OBSERVER_PRIO           3                              /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 #define APP_BLE_CONN_CFG_TAG            1                              /**< A tag identifying the SoftDevice BLE configuration. */
@@ -86,7 +86,7 @@
 #ifdef SVCALL_AS_NORMAL_FUNCTION
 #define SCHED_QUEUE_SIZE                20                                          /**< Maximum number of events in the scheduler queue. More is needed in case of Serialization. */
 #else
-#define SCHED_QUEUE_SIZE                10                                          /**< Maximum number of events in the scheduler queue. */
+#define SCHED_QUEUE_SIZE                100                                          /**< Maximum number of events in the scheduler queue. */
 #endif
 
 #define QWR_MEM_BUFF_SIZE                   512

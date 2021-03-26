@@ -106,7 +106,6 @@
 #endif
 
 // </e>
-
 // <e> PEER_MANAGER_ENABLED - peer_manager - Peer Manager
 //==========================================================
 #ifndef PEER_MANAGER_ENABLED
@@ -338,7 +337,7 @@
  
 
 #ifndef BLE_HRS_ENABLED
-#define BLE_HRS_ENABLED 1
+#define BLE_HRS_ENABLED 0
 #endif
 
 // <q> BLE_HTS_ENABLED  - ble_hts - Health Thermometer Service
@@ -2532,7 +2531,7 @@
 // <e> NRFX_POWER_ENABLED - nrfx_power - POWER peripheral driver
 //==========================================================
 #ifndef NRFX_POWER_ENABLED
-#define NRFX_POWER_ENABLED 0
+#define NRFX_POWER_ENABLED 1
 #endif
 // <o> NRFX_POWER_CONFIG_IRQ_PRIORITY  - Interrupt priority
  
@@ -3164,7 +3163,7 @@
  
 
 #ifndef NRFX_RTC1_ENABLED
-#define NRFX_RTC1_ENABLED 0
+#define NRFX_RTC1_ENABLED 1
 #endif
 
 // <q> NRFX_RTC2_ENABLED  - Enable RTC2 instance
@@ -3896,6 +3895,7 @@
 #define NRFX_TIMER_DEFAULT_CONFIG_BIT_WIDTH 0
 #endif
 
+
 // <o> NRFX_TIMER_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
  
 // <0=> 0 (highest) 
@@ -3966,22 +3966,22 @@
 
 // <e> NRFX_TWIM_ENABLED - nrfx_twim - TWIM peripheral driver
 //==========================================================
-#ifndef NRFX_TWIM_ENABLED
-#define NRFX_TWIM_ENABLED 0
-#endif
+//#ifndef NRFX_TWIM_ENABLED
+//#define NRFX_TWIM_ENABLED 1
+//#endif
 // <q> NRFX_TWIM0_ENABLED  - Enable TWIM0 instance
  
 
 #ifndef NRFX_TWIM0_ENABLED
-#define NRFX_TWIM0_ENABLED 0
+#define NRFX_TWIM0_ENABLED 1
 #endif
 
 // <q> NRFX_TWIM1_ENABLED  - Enable TWIM1 instance
  
 
-#ifndef NRFX_TWIM1_ENABLED
-#define NRFX_TWIM1_ENABLED 0
-#endif
+//#ifndef NRFX_TWIM1_ENABLED
+//#define NRFX_TWIM1_ENABLED 0
+//#endif
 
 // <o> NRFX_TWIM_DEFAULT_CONFIG_FREQUENCY  - Frequency
  
@@ -3989,16 +3989,16 @@
 // <67108864=> 250k 
 // <104857600=> 400k 
 
-#ifndef NRFX_TWIM_DEFAULT_CONFIG_FREQUENCY
-#define NRFX_TWIM_DEFAULT_CONFIG_FREQUENCY 26738688
-#endif
+//#ifndef NRFX_TWIM_DEFAULT_CONFIG_FREQUENCY
+//#define NRFX_TWIM_DEFAULT_CONFIG_FREQUENCY 26738688
+//#endif
 
 // <q> NRFX_TWIM_DEFAULT_CONFIG_HOLD_BUS_UNINIT  - Enables bus holding after uninit
  
 
-#ifndef NRFX_TWIM_DEFAULT_CONFIG_HOLD_BUS_UNINIT
-#define NRFX_TWIM_DEFAULT_CONFIG_HOLD_BUS_UNINIT 0
-#endif
+//#ifndef NRFX_TWIM_DEFAULT_CONFIG_HOLD_BUS_UNINIT
+//#define NRFX_TWIM_DEFAULT_CONFIG_HOLD_BUS_UNINIT 0
+//#endif
 
 // <o> NRFX_TWIM_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
  
@@ -4011,15 +4011,15 @@
 // <6=> 6 
 // <7=> 7 
 
-#ifndef NRFX_TWIM_DEFAULT_CONFIG_IRQ_PRIORITY
-#define NRFX_TWIM_DEFAULT_CONFIG_IRQ_PRIORITY 6
-#endif
+//#ifndef NRFX_TWIM_DEFAULT_CONFIG_IRQ_PRIORITY
+//#define NRFX_TWIM_DEFAULT_CONFIG_IRQ_PRIORITY 6
+//#endif
 
 // <e> NRFX_TWIM_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
-#ifndef NRFX_TWIM_CONFIG_LOG_ENABLED
-#define NRFX_TWIM_CONFIG_LOG_ENABLED 0
-#endif
+//#ifndef NRFX_TWIM_CONFIG_LOG_ENABLED
+//#define NRFX_TWIM_CONFIG_LOG_ENABLED 0
+//#endif
 // <o> NRFX_TWIM_CONFIG_LOG_LEVEL  - Default Severity level
  
 // <0=> Off 
@@ -4028,9 +4028,9 @@
 // <3=> Info 
 // <4=> Debug 
 
-#ifndef NRFX_TWIM_CONFIG_LOG_LEVEL
-#define NRFX_TWIM_CONFIG_LOG_LEVEL 3
-#endif
+//#ifndef NRFX_TWIM_CONFIG_LOG_LEVEL
+//#define NRFX_TWIM_CONFIG_LOG_LEVEL 3
+//#endif
 
 // <o> NRFX_TWIM_CONFIG_INFO_COLOR  - ANSI escape code prefix.
  
@@ -4044,9 +4044,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWIM_CONFIG_INFO_COLOR
-#define NRFX_TWIM_CONFIG_INFO_COLOR 0
-#endif
+//#ifndef NRFX_TWIM_CONFIG_INFO_COLOR
+//#define NRFX_TWIM_CONFIG_INFO_COLOR 0
+//#endif
 
 // <o> NRFX_TWIM_CONFIG_DEBUG_COLOR  - ANSI escape code prefix.
  
@@ -4060,9 +4060,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWIM_CONFIG_DEBUG_COLOR
-#define NRFX_TWIM_CONFIG_DEBUG_COLOR 0
-#endif
+//#ifndef NRFX_TWIM_CONFIG_DEBUG_COLOR
+//#define NRFX_TWIM_CONFIG_DEBUG_COLOR 0
+//#endif
 
 // </e>
 
@@ -4075,58 +4075,58 @@
 // <i> the proper transmission. See more in the Errata document or
 // <i> Anomaly 109 Addendum located at https://infocenter.nordicsemi.com/
 
-#ifndef NRFX_TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED
-#define NRFX_TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED 0
-#endif
+//#ifndef NRFX_TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED
+//#define NRFX_TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED 0
+//#endif
 
 // </e>
 
 // <e> NRFX_TWIS_ENABLED - nrfx_twis - TWIS peripheral driver
 //==========================================================
-#ifndef NRFX_TWIS_ENABLED
-#define NRFX_TWIS_ENABLED 0
-#endif
+//#ifndef NRFX_TWIS_ENABLED
+//#define NRFX_TWIS_ENABLED 0
+//#endif
 // <q> NRFX_TWIS0_ENABLED  - Enable TWIS0 instance
  
 
-#ifndef NRFX_TWIS0_ENABLED
-#define NRFX_TWIS0_ENABLED 0
-#endif
+//#ifndef NRFX_TWIS0_ENABLED
+//#define NRFX_TWIS0_ENABLED 0
+//#endif
 
 // <q> NRFX_TWIS1_ENABLED  - Enable TWIS1 instance
  
 
-#ifndef NRFX_TWIS1_ENABLED
-#define NRFX_TWIS1_ENABLED 0
-#endif
+//#ifndef NRFX_TWIS1_ENABLED
+//#define NRFX_TWIS1_ENABLED 0
+//#endif
 
 // <q> NRFX_TWIS_ASSUME_INIT_AFTER_RESET_ONLY  - Assume that any instance would be initialized only once
  
 
 // <i> Optimization flag. Registers used by TWIS are shared by other peripherals. Normally, during initialization driver tries to clear all registers to known state before doing the initialization itself. This gives initialization safe procedure, no matter when it would be called. If you activate TWIS only once and do never uninitialize it - set this flag to 1 what gives more optimal code.
 
-#ifndef NRFX_TWIS_ASSUME_INIT_AFTER_RESET_ONLY
-#define NRFX_TWIS_ASSUME_INIT_AFTER_RESET_ONLY 0
-#endif
+//#ifndef NRFX_TWIS_ASSUME_INIT_AFTER_RESET_ONLY
+//#define NRFX_TWIS_ASSUME_INIT_AFTER_RESET_ONLY 0
+//#endif
 
 // <q> NRFX_TWIS_NO_SYNC_MODE  - Remove support for synchronous mode
  
 
 // <i> Synchronous mode would be used in specific situations. And it uses some additional code and data memory to safely process state machine by polling it in status functions. If this functionality is not required it may be disabled to free some resources.
 
-#ifndef NRFX_TWIS_NO_SYNC_MODE
-#define NRFX_TWIS_NO_SYNC_MODE 0
-#endif
+//#ifndef NRFX_TWIS_NO_SYNC_MODE
+//#define NRFX_TWIS_NO_SYNC_MODE 0
+//#endif
 
 // <o> NRFX_TWIS_DEFAULT_CONFIG_ADDR0 - Address0 
-#ifndef NRFX_TWIS_DEFAULT_CONFIG_ADDR0
-#define NRFX_TWIS_DEFAULT_CONFIG_ADDR0 0
-#endif
+//#ifndef NRFX_TWIS_DEFAULT_CONFIG_ADDR0
+//#define NRFX_TWIS_DEFAULT_CONFIG_ADDR0 0
+//#endif
 
 // <o> NRFX_TWIS_DEFAULT_CONFIG_ADDR1 - Address1 
-#ifndef NRFX_TWIS_DEFAULT_CONFIG_ADDR1
-#define NRFX_TWIS_DEFAULT_CONFIG_ADDR1 0
-#endif
+//#ifndef NRFX_TWIS_DEFAULT_CONFIG_ADDR1
+//#define NRFX_TWIS_DEFAULT_CONFIG_ADDR1 0
+//#endif
 
 // <o> NRFX_TWIS_DEFAULT_CONFIG_SCL_PULL  - SCL pin pull configuration
  
@@ -4134,9 +4134,9 @@
 // <1=> Pull down 
 // <3=> Pull up 
 
-#ifndef NRFX_TWIS_DEFAULT_CONFIG_SCL_PULL
-#define NRFX_TWIS_DEFAULT_CONFIG_SCL_PULL 0
-#endif
+//#ifndef NRFX_TWIS_DEFAULT_CONFIG_SCL_PULL
+//#define NRFX_TWIS_DEFAULT_CONFIG_SCL_PULL 0
+//#endif
 
 // <o> NRFX_TWIS_DEFAULT_CONFIG_SDA_PULL  - SDA pin pull configuration
  
@@ -4144,9 +4144,9 @@
 // <1=> Pull down 
 // <3=> Pull up 
 
-#ifndef NRFX_TWIS_DEFAULT_CONFIG_SDA_PULL
-#define NRFX_TWIS_DEFAULT_CONFIG_SDA_PULL 0
-#endif
+//#ifndef NRFX_TWIS_DEFAULT_CONFIG_SDA_PULL
+//#define NRFX_TWIS_DEFAULT_CONFIG_SDA_PULL 0
+//#endif
 
 // <o> NRFX_TWIS_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
  
@@ -4159,15 +4159,15 @@
 // <6=> 6 
 // <7=> 7 
 
-#ifndef NRFX_TWIS_DEFAULT_CONFIG_IRQ_PRIORITY
-#define NRFX_TWIS_DEFAULT_CONFIG_IRQ_PRIORITY 6
-#endif
+//#ifndef NRFX_TWIS_DEFAULT_CONFIG_IRQ_PRIORITY
+//#define NRFX_TWIS_DEFAULT_CONFIG_IRQ_PRIORITY 6
+//#endif
 
 // <e> NRFX_TWIS_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
-#ifndef NRFX_TWIS_CONFIG_LOG_ENABLED
-#define NRFX_TWIS_CONFIG_LOG_ENABLED 0
-#endif
+//#ifndef NRFX_TWIS_CONFIG_LOG_ENABLED
+//#define NRFX_TWIS_CONFIG_LOG_ENABLED 0
+//#endif
 // <o> NRFX_TWIS_CONFIG_LOG_LEVEL  - Default Severity level
  
 // <0=> Off 
@@ -4176,9 +4176,9 @@
 // <3=> Info 
 // <4=> Debug 
 
-#ifndef NRFX_TWIS_CONFIG_LOG_LEVEL
-#define NRFX_TWIS_CONFIG_LOG_LEVEL 3
-#endif
+//#ifndef NRFX_TWIS_CONFIG_LOG_LEVEL
+//#define NRFX_TWIS_CONFIG_LOG_LEVEL 3
+//#endif
 
 // <o> NRFX_TWIS_CONFIG_INFO_COLOR  - ANSI escape code prefix.
  
@@ -4192,9 +4192,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWIS_CONFIG_INFO_COLOR
-#define NRFX_TWIS_CONFIG_INFO_COLOR 0
-#endif
+//#ifndef NRFX_TWIS_CONFIG_INFO_COLOR
+//#define NRFX_TWIS_CONFIG_INFO_COLOR 0
+//#endif
 
 // <o> NRFX_TWIS_CONFIG_DEBUG_COLOR  - ANSI escape code prefix.
  
@@ -4208,9 +4208,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWIS_CONFIG_DEBUG_COLOR
-#define NRFX_TWIS_CONFIG_DEBUG_COLOR 0
-#endif
+//#ifndef NRFX_TWIS_CONFIG_DEBUG_COLOR
+//#define NRFX_TWIS_CONFIG_DEBUG_COLOR 0
+//#endif
 
 // </e>
 
@@ -4218,22 +4218,22 @@
 
 // <e> NRFX_TWI_ENABLED - nrfx_twi - TWI peripheral driver
 //==========================================================
-#ifndef NRFX_TWI_ENABLED
-#define NRFX_TWI_ENABLED 0
-#endif
+//#ifndef NRFX_TWI_ENABLED
+//#define NRFX_TWI_ENABLED 1
+//#endif
 // <q> NRFX_TWI0_ENABLED  - Enable TWI0 instance
  
 
-#ifndef NRFX_TWI0_ENABLED
-#define NRFX_TWI0_ENABLED 0
-#endif
+//#ifndef NRFX_TWI0_ENABLED
+//#define NRFX_TWI0_ENABLED 1
+//#endif
 
 // <q> NRFX_TWI1_ENABLED  - Enable TWI1 instance
  
 
-#ifndef NRFX_TWI1_ENABLED
-#define NRFX_TWI1_ENABLED 0
-#endif
+//#ifndef NRFX_TWI1_ENABLED
+//#define NRFX_TWI1_ENABLED 0
+//#endif
 
 // <o> NRFX_TWI_DEFAULT_CONFIG_FREQUENCY  - Frequency
  
@@ -4241,16 +4241,16 @@
 // <67108864=> 250k 
 // <104857600=> 400k 
 
-#ifndef NRFX_TWI_DEFAULT_CONFIG_FREQUENCY
-#define NRFX_TWI_DEFAULT_CONFIG_FREQUENCY 26738688
-#endif
+//#ifndef NRFX_TWI_DEFAULT_CONFIG_FREQUENCY
+//#define NRFX_TWI_DEFAULT_CONFIG_FREQUENCY 26738688
+//#endif
 
 // <q> NRFX_TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT  - Enables bus holding after uninit
  
 
-#ifndef NRFX_TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT
-#define NRFX_TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT 0
-#endif
+//#ifndef NRFX_TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT
+//#define NRFX_TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT 0
+//#endif
 
 // <o> NRFX_TWI_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
  
@@ -4263,15 +4263,15 @@
 // <6=> 6 
 // <7=> 7 
 
-#ifndef NRFX_TWI_DEFAULT_CONFIG_IRQ_PRIORITY
-#define NRFX_TWI_DEFAULT_CONFIG_IRQ_PRIORITY 6
-#endif
+//#ifndef NRFX_TWI_DEFAULT_CONFIG_IRQ_PRIORITY
+//#define NRFX_TWI_DEFAULT_CONFIG_IRQ_PRIORITY 6
+//#endif
 
 // <e> NRFX_TWI_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
-#ifndef NRFX_TWI_CONFIG_LOG_ENABLED
-#define NRFX_TWI_CONFIG_LOG_ENABLED 0
-#endif
+//#ifndef NRFX_TWI_CONFIG_LOG_ENABLED
+//#define NRFX_TWI_CONFIG_LOG_ENABLED 0
+//#endif
 // <o> NRFX_TWI_CONFIG_LOG_LEVEL  - Default Severity level
  
 // <0=> Off 
@@ -4280,9 +4280,9 @@
 // <3=> Info 
 // <4=> Debug 
 
-#ifndef NRFX_TWI_CONFIG_LOG_LEVEL
-#define NRFX_TWI_CONFIG_LOG_LEVEL 3
-#endif
+//#ifndef NRFX_TWI_CONFIG_LOG_LEVEL
+//#define NRFX_TWI_CONFIG_LOG_LEVEL 3
+//#endif
 
 // <o> NRFX_TWI_CONFIG_INFO_COLOR  - ANSI escape code prefix.
  
@@ -4296,9 +4296,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWI_CONFIG_INFO_COLOR
-#define NRFX_TWI_CONFIG_INFO_COLOR 0
-#endif
+//#ifndef NRFX_TWI_CONFIG_INFO_COLOR
+//#define NRFX_TWI_CONFIG_INFO_COLOR 0
+//#endif
 
 // <o> NRFX_TWI_CONFIG_DEBUG_COLOR  - ANSI escape code prefix.
  
@@ -4312,9 +4312,9 @@
 // <7=> Cyan 
 // <8=> White 
 
-#ifndef NRFX_TWI_CONFIG_DEBUG_COLOR
-#define NRFX_TWI_CONFIG_DEBUG_COLOR 0
-#endif
+//#ifndef NRFX_TWI_CONFIG_DEBUG_COLOR
+//#define NRFX_TWI_CONFIG_DEBUG_COLOR 0
+//#endif
 
 // </e>
 
@@ -4708,7 +4708,7 @@
 // <e> PDM_ENABLED - nrf_drv_pdm - PDM peripheral driver - legacy layer
 //==========================================================
 #ifndef PDM_ENABLED
-#define PDM_ENABLED 0
+#define PDM_ENABLED 1
 #endif
 // <o> PDM_CONFIG_MODE  - Mode
  
@@ -5715,7 +5715,7 @@
 // <e> TWI_ENABLED - nrf_drv_twi - TWI/TWIM peripheral driver - legacy layer
 //==========================================================
 #ifndef TWI_ENABLED
-#define TWI_ENABLED 0
+#define TWI_ENABLED 1
 #endif
 // <o> TWI_DEFAULT_CONFIG_FREQUENCY  - Frequency
  
@@ -5761,13 +5761,13 @@
 // <e> TWI0_ENABLED - Enable TWI0 instance
 //==========================================================
 #ifndef TWI0_ENABLED
-#define TWI0_ENABLED 0
+#define TWI0_ENABLED 1
 #endif
 // <q> TWI0_USE_EASY_DMA  - Use EasyDMA (if present)
  
 
 #ifndef TWI0_USE_EASY_DMA
-#define TWI0_USE_EASY_DMA 0
+#define TWI0_USE_EASY_DMA 1
 #endif
 
 // </e>
@@ -6015,7 +6015,7 @@
  
 
 #ifndef NRF_TWI_SENSOR_ENABLED
-#define NRF_TWI_SENSOR_ENABLED 0
+#define NRF_TWI_SENSOR_ENABLED 1
 #endif
 
 // </h> 
@@ -6163,7 +6163,7 @@
 // <i> This option can be used when app_timer is used for timestamping.
 
 #ifndef APP_TIMER_KEEPS_RTC_ACTIVE
-#define APP_TIMER_KEEPS_RTC_ACTIVE 0
+#define APP_TIMER_KEEPS_RTC_ACTIVE 1
 #endif
 
 // <o> APP_TIMER_SAFE_WINDOW_MS - Maximum possible latency (in milliseconds) of handling app_timer event. 
@@ -7302,7 +7302,7 @@
  
 
 #ifndef NRF_TWI_MNGR_ENABLED
-#define NRF_TWI_MNGR_ENABLED 0
+#define NRF_TWI_MNGR_ENABLED 1
 #endif
 
 // <q> SLIP_ENABLED  - slip - SLIP encoding and decoding
@@ -7686,7 +7686,7 @@
 // <4=> Debug 
 
 #ifndef NRF_LOG_DEFAULT_LEVEL
-#define NRF_LOG_DEFAULT_LEVEL 3
+#define NRF_LOG_DEFAULT_LEVEL 4
 #endif
 
 // <q> NRF_LOG_DEFERRED  - Enable deffered logger.
@@ -10079,7 +10079,7 @@
 // <e> NRF_QUEUE_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef NRF_QUEUE_CONFIG_LOG_ENABLED
-#define NRF_QUEUE_CONFIG_LOG_ENABLED 0
+#define NRF_QUEUE_CONFIG_LOG_ENABLED 1
 #endif
 // <o> NRF_QUEUE_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -11839,7 +11839,7 @@
 // <2=> NRF_SDH_DISPATCH_MODEL_POLLING 
 
 #ifndef NRF_SDH_DISPATCH_MODEL
-#define NRF_SDH_DISPATCH_MODEL 0
+#define NRF_SDH_DISPATCH_MODEL 1
 #endif
 
 // </h> 

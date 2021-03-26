@@ -17,8 +17,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 #include "hw_config.h"
+#include "sim_config.h"
 #include "sensorsim.h"
 #include "dev_include.h"
+#include "heart_rate_sensor_simulator.h"
 
 typedef struct device_heart_rate_sensor_sim_s {
     device_heart_rate_sensor_t pub_iface;

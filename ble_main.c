@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Open Ring Project, All rights reserved
+ * Copyright (c) 2021 Open Ring Project, All rights reserved
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  * and associated documentation files (the "Software"), to deal in the Software without 
@@ -31,6 +31,7 @@
 #include "peer_manager.h"
 #include "peer_manager_handler.h"
 #include "nrf_sdh.h"
+#include "nrf_delay.h"
 
 NRF_BLE_GATT_DEF(m_gatt);                                           /**< GATT module instance. */
 NRF_BLE_BMS_DEF(m_bms);                                             //!< Structure used to identify the Bond Management service.
@@ -838,6 +839,7 @@ static void advertising$init(void) {
     init.config.ble_adv_slow_enabled      = true;
     init.config.ble_adv_slow_interval     = APP_ADV_SLOW_INTERVAL;
     init.config.ble_adv_slow_timeout      = APP_ADV_SLOW_DURATION;
+    init.config.ble_adv_extended_enabled  = false;
 
 
    /* TODO: needed? impact?
@@ -999,6 +1001,7 @@ static void ble$ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
  */
 static void ble$stack_init(void)
 {
+    //nrf_delay_ms(4000);
     NRF_LOG_INFO("BLE stack init");
     ret_code_t err_code;
 
@@ -1039,9 +1042,11 @@ static void service_controllers_init(void) {
 #if NRF_MODULE_ENABLED(BLE_PLXS)
     srvcon$pulse_oximeter_service$init();
 #endif
+/*
 #if NRF_MODULE_ENABLED(BLE_RSCS)
     srvcon$running_speed_cadence_service$init();
 #endif
+*/
     srvcon$device_information_service$init();
 }
 
@@ -1059,9 +1064,11 @@ static void service_controllers_start(void)
 #if NRF_MODULE_ENABLED(BLE_PLXS)
     srvcon$pulse_oximeter_service$start();
 #endif
+/*
 #if NRF_MODULE_ENABLED(BLE_RSCS)
     srvcon$running_speed_cadence_service$start();
 #endif
+*/
 }
 
 void ble$on_bsp_event(bsp_event_t event) {

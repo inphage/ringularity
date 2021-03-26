@@ -22,6 +22,7 @@
 #include "sensorsim.h"
 #include "dev_include.h"
 #include "hw_config.h"
+#include "sim_config.h"
 
 typedef struct device_battery_sim_s {
     device_battery_t  ext_iface;

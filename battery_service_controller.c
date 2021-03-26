@@ -19,6 +19,7 @@
 #include "sdk_errors.h"
 #include "battery_service_controller.h"
 #include "hw_config.h"
+#include "sim_config.h"
 #include "app_timer.h"
 #include "ble_bas.h"
 
@@ -92,4 +93,6 @@ void srvcon$battery_service$init() {
 
     err_code = ble_bas_init(&m_bas, &bas_init);
     APP_ERROR_CHECK(err_code);
+
+    init_timer();
 }
